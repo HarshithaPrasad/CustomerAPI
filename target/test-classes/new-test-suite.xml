@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:core="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+    <munit:config name="munit" doc:name="MUnit configuration"/>
+    <spring:beans>
+        <spring:import resource="classpath:api.xml"/>
+    </spring:beans>
+    <munit:test name="new-test-suite-put:/{customerid}:application/json:api-configTest" description="Test">
+        <flow-ref name="put:/{customerid}:application/json:api-config" doc:name="Flow-ref to put:/{customerid}:application/json:api-config"/>
+    </munit:test>
+    <munit:test name="new-test-suite-delete:/{customerid}:api-configTest" description="Test">
+        <flow-ref name="delete:/{customerid}:api-config" doc:name="Flow-ref to delete:/{customerid}:api-config"/>
+    </munit:test>
+    <munit:test name="new-test-suite-get:/customers:api-configTest" description="Test">
+        <flow-ref name="get:/customers:api-config" doc:name="Flow-ref to get:/customers:api-config"/>
+        <set-payload value=" [
+                  {
+                    &quot;customerId&quot;: &quot;1&quot;,
+                    &quot;firstName&quot;: &quot;Harshitha&quot;,
+                    &quot;lastName&quot;: &quot;Megha&quot;,
+                    &quot;address&quot;: [
+                      {
+                        &quot;addressLine1&quot;: &quot;unit 1&quot;,
+                        &quot;streetName&quot;: &quot;George Street&quot;,
+                        &quot;suburb&quot;: &quot;Sydney CBD&quot;,
+                        &quot;city&quot;: &quot;Sydney&quot;,
+                        &quot;country&quot;: &quot;Australia&quot;
+                      
+                      }
+                    ]
+                  }
+                
+                
+                
+                
+                
+                ]" doc:name="Set Payload"/>
+    </munit:test>
+    <munit:test name="new-test-suite-get:/{customerid}:application/json:api-configTest" description="Test">
+        <flow-ref name="get:/{customerid}:application/json:api-config" doc:name="Flow-ref to get:/{customerid}:application/json:api-config"/>
+    </munit:test>
+    <munit:test name="new-test-suite-post:/customers:application/json:api-configTest" description="Test">
+        <flow-ref name="post:/customers:application/json:api-config" doc:name="Flow-ref to post:/customers:application/json:api-config"/>
+    </munit:test>
+</mule>
